@@ -6,8 +6,8 @@ ARG DEBIAN_FRONTEND noninteractive
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && apt-get -y update && \
 apt -q -y --no-install-recommends install dialog apt-utils nginx mc nano curl telnet net-tools default-jdk sudo && \
 mkdir -p /var/www/html && \
-useradd -d /home/ngx -s /bin/bash -p $(echo mypasswd | openssl passwd -1 -stdin) ngx && chage --lastday 0 ngx && \
-echo 'ngx      ALL=NOPASSWD: /usr/sbin/ngx' > /etc/sudoers.d/ngx && \
+useradd -d /home/ngx -s /bin/bash -p $(echo mypasswd | openssl passwd -1 -stdin) ngx && \ 
+echo 'ngx      ALL=NOPASSWD: /usr/sbin/nginx' > /etc/sudoers.d/ngx && chage --lastday 0 ngx && \
 chmod 440 /etc/sudoers.d/ngx
 
 #Copy ngnx configs to container
